@@ -1,0 +1,58 @@
+html {
+    margin-top: 1%;
+    scroll-behavior: smooth;
+  }
+  body{
+    background-image: url(../assets/img/imagen-fondo3.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    display: block;
+  }
+
+  .container-title{
+      margin-top: 15px;
+      margin-left: 5%;
+      margin-right: 5%;
+  }
+  .title{
+    display: flex;
+    color: white;
+    margin-top: 2em;
+    font-size: 1.5em;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  .container-registro{
+      margin-top: 5px;
+      padding: 10px;
+      background-color: rgba(0, 0, 0,0.5);
+      margin-left: 5%;
+      margin-right: 5%;
+  }
+  .form-registro{
+      width: 60%;
+      /* margin-left: 50px; */
+  }
+  .gif{
+      width: 400px;
+      height: 400px;
+      margin-top: 70px;
+      margin-left: 0;
+  }
+
+  /* MOBILE */
+
+  @media screen and (max-width: 1050px) {
+    .container-title{
+        margin-top: 50px;
+    }  
+    .gif{
+          display: none;
+      }
+      .form-registro{
+          width: 100%;
+      }
+  }

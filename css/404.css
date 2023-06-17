@@ -1,0 +1,12 @@
+body{
+    background: url(/assets/img/bg-404.jpg.png) no-repeat fixed;
+    background-size: cover;
+}
+.container404{
+    height: 100vh;
+    background-color: white;
+    margin-top: 5%;
+}
+.container404 img{
+    width: 65%;
+}

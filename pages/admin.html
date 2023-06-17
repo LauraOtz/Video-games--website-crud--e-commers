@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+  <title>Administration - Rollin Games</title>
+  <link rel="stylesheet" href="../css/style-footer.css">
+  <link rel="stylesheet" href="../css/nav.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="shortcut icon" type="image/x-icon" href="../assets/ico.ico" />
+</head>
+
+<body>
+
+  <header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html"><img class="foto-navbar"
+            src="../assets/img/rolling games 2 (1) (online-video-cutter.com).gif" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav" id="listaMenu">
+            <li class="nav-item">
+              <div class="searchBox">
+                <form action="../pages/search.html" method="get" class="d-flex">
+                  <input class="searchInput form-control rounded" type="text" name="searchResults" placeholder="Search">
+                  <button class="btn btn-danger" href="#">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </form>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link botones active" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item" id="loginNav">
+              <a class="nav-link botones active" data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Login</a>
+            </li>
+            <li class="nav-item" id="regNav">
+              <a class="nav-link botones active" data-bs-toggle="modal" data-bs-target=""
+                href="../pages/registro.html">Register</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- FIN DE NAVBAR -->
+  </header>
+  <main>
+    <div class="container admin">
+      <div class="d-flex bd-highlight mb-3">
+        <div class="me-auto p-2 bd-highlight">
+          <h2>Administration</h2>
+        </div>
+        <div class="p-2 bd-highlight">
+          <button type="button" class="btn btn-secondary" onclick="createGameModal()">Create</button>
+          <!-- <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+          data-bs-target="#formCreate">Create</button> -->
+          <!-- <a class="nav-link botones active" data-bs-toggle="modal" data-bs-target="#formCreate"
+                            href="#">Registro</a> -->
+        </div>
+      </div>
+
+      <!-- MODAL REGISTRO -->
+      <div class="modal fade" id="formCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header bg-dark">
+              <h5 class="modal-title text-white" id="exampleModalLabel">Create a New Game</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-dark">
+              <form id="gameForm" onsubmit="createGame(event)">
+
+                <div class="row">
+                  <div class="col-lg-6 col-xl-6 col-xs-sm-12">
+                    <div class="mb-3">
+                      <label for="gameTitle" class="form-label"><span class="asterisk">* </span>Title</label>
+                      <input type="text" class="form-control" id="gameTitle" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameGenre" class="form-label"><span class="asterisk">* </span>Genre</label>
+                      <!-- <select name="" id="gameGenre" class="form-select" required>
+                        <option disabled selected value>Select a Genre</option>
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Fighting">Fighting</option>
+                        <option value="Indie">Indie</option>
+                        <option value="Massively Multiplayer">Massively Multiplayer</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Simulation">Simulation</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Strategy">Strategy</option>                        
+                        </select> -->
+                      <select name="field1" id="selectGenre" multiple
+                        onchange="setGenero(Array.from(this.selectedOptions).map(x=>x.value??x.text))"
+                        multiselect-hide-x="true" required>
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Fighting">Fighting</option>
+                        <option value="FPS">FPS</option>
+                        <option value="Indie">Indie</option>
+                        <option value="Massively Multiplayer">Massively Multiplayer</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Simulation">Simulation</option>
+                        <option value="Shooter">Shooter</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Strategy">Strategy</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameDescription" class="form-label">Description</label>
+                      <input type="text" id="gameDescription" class="form-control"></input>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameDeveloper" class="form-label">Developer</label>
+                      <input type="text" class="form-control" id="gameDeveloper">
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameReleaseDate" class="form-label"><span class="asterisk">* </span>Release
+                        Date</label>
+                      <input type="date" class="form-control" id="gameReleaseDate" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gamePrice" class="form-label">Price</label>
+                      <input type="number" step="0.01" placeholder="$" class="form-control" id="gamePrice" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="published">
+                      <label class="form-check-label text-white" for="exampleCheck1">Published</label>
+                    </div>
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="featured">
+                      <label class="form-check-label text-white" for="exampleCheck2">Featured game</label>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 col-xl-6 col-xs-sm-12">
+                    <div class="mb-3">
+                      <label for="gameLinkPoster" class="form-label"><span class="asterisk">* </span>Link Poster</label>
+                      <input type="text" class="form-control" id="gameLinkPoster" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameLinkBanner" class="form-label"><span class="asterisk">* </span>Link Banner</label>
+                      <input type="text" class="form-control" id="gameLinkBanner" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameLogo" class="form-label"><span class="asterisk">* </span>Link Logo</label>
+                      <input type="text" class="form-control" id="gameLogo" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameScreen1" class="form-label"><span class="asterisk">* </span>Link Screenshot 1</label>
+                      <input type="text" class="form-control" id="gameScreen1" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameScreen2" class="form-label"><span class="asterisk">* </span>Link Screenshot 2</label>
+                      <input type="text" class="form-control" id="gameScreen2" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameScreen3" class="form-label"><span class="asterisk">* </span>Link Screenshot 3</label>
+                      <input type="text" class="form-control" id="gameScreen3" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameLinkVideo" class="form-label"><span class="asterisk">* </span>Link Video</label>
+                      <input type="text" class="form-control" id="gameLinkVideo" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameLinkIcon" class="form-label"><span class="asterisk">* </span>Link Icon</label>
+                      <input type="text" class="form-control" id="gameLinkIcon" required>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+            <div class="modal-footer bg-dark">
+              <button type="button" class="btn btn-dark text-white" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIN MODAL REGISTRO -->
+
+      <!-- MODAL EDICION -->
+
+      <div class="modal fade" id="formEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header bg-dark">
+              <h5 class="modal-title text-white" id="exampleModalLabel">Edit Game</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-dark" id="modal-bodyEdit">
+              <form id="gameFormEdit">
+
+                <div class="row">
+                  <div class="col-lg-6 col-xl-6 col-xs-sm-12">
+                    <div class="mb-3">
+                      <label for="gameTitle" class="form-label"><span class="asterisk">* </span>Title</label>
+                      <input type="text" class="form-control" id="gameEditTitle" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameGenre" class="form-label"><span class="asterisk">* </span>Genre</label>
+                      <input type="text" class="form-control" id="gameEditGenre" required>
+                      <!-- <select name="" id="gameEditGenre" class="form-select" required>
+                        <option disabled selected value>Select a Genre</option>
+                        <option value="Action">Action</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Fighting">Fighting</option>
+                        <option value="Indie">Indie</option>
+                        <option value="Massively Multiplayer">Massively Multiplayer</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Simulation">Simulation</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Strategy">Strategy</option>                        
+                        </select> -->
+                      <!-- <select name="field1" id="selectGenre2" multiple onchange="setGenero(Array.from(this.selectedOptions).map(x=>x.value??x.text))" multiselect-hide-x="true">                          
+                          <option value="Action">Action</option>
+                          <option value="Adventure">Adventure</option>
+                          <option value="Casual">Casual</option>
+                          <option value="Fighting">Fighting</option>
+                          <option value="FPS">FPS</option>
+                          <option value="Indie">Indie</option>
+                          <option value="Massively Multiplayer">Massively Multiplayer</option>
+                          <option value="RPG">RPG</option>
+                          <option value="Simulation">Simulation</option>
+                          <option value="Shooter">Shooter</option>
+                          <option value="Sports">Sports</option>
+                          <option value="Strategy">Strategy</option>
+                        </select> -->
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameDescription" class="form-label"><span class="asterisk">* </span>Description</label>
+                      <input type="text" id="gameEditDescription" class="form-control" required></input>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameDeveloper" class="form-label"><span class="asterisk">* </span>Developer</label>
+                      <input type="text" class="form-control" id="gameEditDeveloper" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameReleaseDate" class="form-label"><span class="asterisk">* </span>Release Date</label>
+                      <input type="date" class="form-control" id="gameEditReleaseDate" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gamePrice" class="form-label"><span class="asterisk">* </span>Price</label>
+                      <input type="number" step="0.01" placeholder="$" class="form-control" id="gameEditPrice" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="editPublished">
+                      <label class="form-check-label text-white" for="exampleCheck1">Published</label>
+                    </div>
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="editFeatured">
+                      <label class="form-check-label text-white" for="exampleCheck2">Featured game</label>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-6 col-xl-6 col-xs-sm-12">
+                    <div class="mb-3">
+                      <label for="gameLinkPoster" class="form-label"><span class="asterisk">* </span>Link Poster</label>
+                      <input type="text" class="form-control" id="gameEditLinkPoster" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameLinkBanner" class="form-label"><span class="asterisk">* </span>Link Banner</label>
+                      <input type="text" class="form-control" id="gameEditLinkBanner" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameLogo" class="form-label"><span class="asterisk">* </span>Link Logo</label>
+                      <input type="text" class="form-control" id="gameEditLogo" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameScreen1" class="form-label"><span class="asterisk">* </span>Link Screenshot 1</label>
+                      <input type="text" class="form-control" id="gameEditScreen1" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameScreen2" class="form-label"><span class="asterisk">* </span>Link Screenshot 2</label>
+                      <input type="text" class="form-control" id="gameEditScreen2" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameScreen3" class="form-label"><span class="asterisk">* </span>Link Screenshot 3</label>
+                      <input type="text" class="form-control" id="gameEditScreen3" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameLinkVideo" class="form-label"><span class="asterisk">* </span>Link Video</label>
+                      <input type="text" class="form-control" id="gameEditLinkVideo" required>
+                    </div>
+                    <div class="mb-3">
+                      <label for="gameLinkIcon" class="form-label"><span class="asterisk">* </span>Link Icon</label>
+                      <input type="text" class="form-control" id="gameEditLinkIcon" required>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+            <div class="modal-footer bg-dark">
+              <button type="button" class="btn btn-dark text-white" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLA -->
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col"></th>
+              <th scope="col">Title</th>
+              <th scope="col" class="d-none d-md-table-cell">Release Date</th>
+              <th scope="col" class="d-none d-md-table-cell">Developer</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody id="mytable">
+            <tr>
+              <th scope="row" colspan="5">Loading...</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- contenido de footer -->
+
+  <footer class="footer mb-0">
+    <div class="container container-footer pt-1 ">
+      <div class="row mt-3">
+        <div class="col px-3 text-center footer-contact">
+          <button class="botonFooter">
+            <a href="../pages/aboutUs.html"><span>About Us</span></a>
+          </button>
+          <button class="botonFooter">
+            <a href="../pages/contacto.html"><span>Contact</span></a>
+          </button>
+        </div>
+      </div>
+
+     
+        <div class="row mt-3 cont">
+
+            <div class="col text-center">
+              <a href="../pages/404.html"><span><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></span></a>
+            </div>
+            <div class="col text-center">
+              <a href="../pages/404.html"><span><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></span></a>
+            </div>
+            <div class="col text-center">
+              <a href="../pages/404.html"><span><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i></span></a>
+            </div>
+            <div class="col text-center">
+              <a href="../pages/404.html"><span><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></span></a>
+            </div>
+        </div>
+      <!-- </div> -->
+
+      <div class="container copyright-text mt-3 ">
+        <div class="row">
+          <div class="col px-3 text-center footer-contact">
+            <p class=" text-center">Copyright &copy; 2022 All Rights Reserved by <b>RollingGames</b>.</p>
+            
+          </div>
+        </div>
+    
+    </div>
+  </footer>
+
+  <!-- MODAL DE LOGIN -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="exampleModalLabel">Log In</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body bg-dark">
+          <form id="form-login">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input type="email" class="form-control" id="emailLogin" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="passLogin">
+              <a href="#" data-bs-toggle="modal" data-bs-target="#recuCuenta">Forgot your password?</a>
+            </div>
+            <button type="submit" class="btn btn-danger text-white" data-bs-dismiss="modal">Log In</button>
+          </form>
+        </div>
+        <div class="modal-footer bg-dark">
+          <button type="button" class="btn btn-dark text-white" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FIN MODAL DE LOGIN -->
+  <!-- MODAL DE RECUPERACION DE CUENTA -->
+  <div class="modal fade" id="recuCuenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body bg-dark">
+          <form id="form-recuCuenta">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <p class="text-white">Enter your email address</p>
+              <input type="email" class="form-control" id="emailRecu" aria-describedby="emailHelp">
+            </div>
+            <button type="button" class="btn btn-danger text-white" data-bs-dismiss="modal"
+              onclick="recuperarCuenta()">Send</button>
+            <button type="button" class="btn btn-dark text-white" data-bs-dismiss="modal">Close</button>
+          </form>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- FIN MODAL DE RECUPERACION DE CUENTA -->
+  <!-- MODAL DE CERRAR SESION -->
+  <div class="modal fade" id="cerrarSesion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-white" id="exampleModalLabel">Do you really want to log out?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body bg-dark">
+          <button type="submit" class="btn btn-danger text-white" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-dark text-white" data-bs-dismiss="modal" onclick="cerrarSesion()">Log Out</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIN MODAL DE CERRAR SESION-->
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+  <script src="https://kit.fontawesome.com/dfb7276bfd.js" crossorigin="anonymous"></script>
+  <script src="../js/multiselect-dropdown.js"></script>
+  <script src="../js/games.js"></script>
+  <script src="../js/admin.js"></script>
+  <script src="../js/login.js"></script>
+
+
+</body>
+
+</html>

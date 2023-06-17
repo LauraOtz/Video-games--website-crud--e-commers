@@ -1,0 +1,9 @@
+
+.container-nosotros{
+    margin-top: 10px;
+    display: flex;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0,0.5);
+   }

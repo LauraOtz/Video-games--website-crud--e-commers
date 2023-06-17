@@ -1,0 +1,70 @@
+html {
+    margin-top: 1%;
+    scroll-behavior: smooth;
+  }
+
+.container-title{
+    margin-top: 15px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.title{
+    display: flex;
+    color: white;
+    margin-top: 2em;
+    font-size: 1.5em;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+.container-contacto{
+    margin-top: 5px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0,0.5);
+    display: flex;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.form-contacto{
+    width: 67%;
+   
+}
+
+.icon-info{
+    margin-top: 10px;
+    color: white;
+    width: 350px;
+}
+
+.informacion-detallada{
+    padding-left: 10px;
+}
+
+/* MOBILE */
+
+@media screen and (max-width: 1024px) {
+    .container-contacto{
+        display: block;
+    }
+    .container-title{
+        margin-top: 30px;
+    }  
+    .form-contacto{
+        width: 100%;
+    }
+    .info-contacto{
+        margin-top: 20px;
+        width: 100%;
+    }
+    .mapa{
+        width: 270px;
+    }
+    .informacion-detallada{
+        padding-left: 5px;
+    }
+    .icon-info{
+        width: 250px;
+    }
+  }

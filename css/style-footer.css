@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2&display=swap");
+ 
+body{
+  display: flex !important;
+  flex-direction: column;
+  justify-content:space-between ;
+  position: relative;
+  height: 100vh;
+
+}
+
+footer {
+    background-color: rgb(25, 26, 25);
+    margin-top: 20px;    
+    font-family: "Baloo 2", cursive;
+	  font-size: 16px;
+    color: rgb(221, 223, 219); 
+    margin-bottom: 0px;
+
+
+  }
+
+  .container-footer{
+    width: 100%;
+    height: 160px;
+    position: relative;
+  }
+  
+  footer span {
+    font-size: 15px;
+    
+  }
+  
+  .footer-contact a{
+    padding-bottom: 5px;
+
+  }
+  
+.footer-contact a{
+text-decoration: none;
+display: inline-block;
+
+
+
+}
+.footer-contact{
+  display: flex;
+  justify-content: space-around;
+}
+
+  .footer a
+  {
+    color:#b9b9b9;
+  }
+  .footer a:hover
+  {    
+    color: white;
+    text-decoration:none;
+  }
+
+
+  .socials{
+    /* margin-top: 15px; */
+
+  }
+  .footer-links
+  { 
+    /* margin-top: 20px !important;    */
+    padding-left:0;
+   
+  }
+  .copyright-text{   
+    position: absolute;
+   
+    bottom: 0;    
+    /* margin-top: 10px !important; */
+  }
+
+ .botonFooter{
+  padding-inline: 10px !important;
+  border: 2px solid white;
+  
+  background-color:rgb(184, 31, 31);
+padding: 5px;
+border-radius: 10px;
+ }
+ .botonFooter a{
+  font-size: 20px;
+ }
+ .siguenos{
+  font-size: 25px;
+  /* width: 200px !important; */
+ }
+
+ @media (max-width: 700px) {
+  .divSiguenos{
+    display: block;
+   }
+  }
+
+ 
+
+  
+ 
